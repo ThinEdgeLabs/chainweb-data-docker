@@ -30,7 +30,7 @@ done
 
  if [[ -f /usr/local/bin/chainweb-data ]]; then
    node_await
-   chainweb-data server --port 8888 --service-host=$CHAINWEB_NODE_HOST --p2p-host=$CHAINWEB_NODE_HOST --service-port=$CHAINWEB_NODE_SERVICE_PORT --p2p-port=$CHAINWEB_NODE_SERVICE_PORT --dbuser=postgres --dbpass=postgres --dbname=postgres -m
+   chainweb-data server --port 8888 --service-host=$CHAINWEB_NODE_HOST --p2p-host=$CHAINWEB_NODE_HOST --service-port=$CHAINWEB_NODE_SERVICE_PORT --p2p-port=$CHAINWEB_NODE_P2P_PORT --dbuser=postgres --dbpass=postgres --dbname=postgres -m
    exit
  fi
 
@@ -97,5 +97,5 @@ done
  #starting chainweb-data server
  if [[ -f /usr/local/bin/chainweb-data ]]; then
      node_await
-     chainweb-data server --port 8888 --service-host=$CHAINWEB_NODE_HOST --p2p-host=$CHAINWEB_NODE_HOST --service-port=$CHAINWEB_NODE_SERVICE_PORT --p2p-port=$CHAINWEB_NODE_SERVICE_PORT --dbuser=postgres --dbpass=postgres --dbname=postgres -m
+     chainweb-data server --port 8888 --service-host=$CHAINWEB_NODE_HOST --p2p-host=$CHAINWEB_NODE_HOST --service-port=$CHAINWEB_NODE_SERVICE_PORT --p2p-port=$CHAINWEB_NODE_P2P_PORT --dbuser=postgres --dbpass=postgres --dbname=postgres -m
  fi
