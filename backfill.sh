@@ -12,7 +12,7 @@ fi
 
 if [[ -f /tmp/backfill ]]; then
     echo -e "Running fill as gaps..."
-    chainweb-data fill --service-host=$CHAINWEB_NODE_HOST --p2p-host=$CHAINWEB_NODE_HOST --service-port=$CHAINWEB_NODE_SERVICE_PORT --p2p-port=$CHAINWEB_NODE_SERVICE_PORT --dbuser=postgres --dbpass=postgres --dbname=postgres
+    chainweb-data fill --service-host=$CHAINWEB_NODE_HOST --p2p-host=$CHAINWEB_NODE_HOST --service-port=$CHAINWEB_NODE_SERVICE_PORT --p2p-port=$CHAINWEB_NODE_P2P_PORT --dbuser=postgres --dbpass=postgres --dbname=postgres
     echo -e "Restarting chainweb-data..."
     kill -9 $(ps aux | grep 'chainweb-data server --port 8888' | awk '{ print $2 }' | head -n1)
     exit
@@ -41,7 +41,7 @@ until [[ "$x" == 1 ]] ; do
 
     date_timestamp=$(date '+%Y-%m-%d %H:%M:%S')
     echo -e "Fill started at $date_timestamp"
-    chainweb-data fill --service-host=$CHAINWEB_NODE_HOST --p2p-host=$CHAINWEB_NODE_HOST --service-port=$CHAINWEB_NODE_SERVICE_PORT --p2p-port=$CHAINWEB_NODE_SERVICE_PORT --dbuser=postgres --dbpass=postgres --dbname=postgres +RTS -N
+    chainweb-data fill --service-host=$CHAINWEB_NODE_HOST --p2p-host=$CHAINWEB_NODE_HOST --service-port=$CHAINWEB_NODE_SERVICE_PORT --p2p-port=$CHAINWEB_NODE_P2P_PORT --dbuser=postgres --dbpass=postgres --dbname=postgres +RTS -N
     sleep 10
     progress_check=$(cat $(ls /var/log/supervisor | grep chainweb-backfill-stdout | awk {'print "/var/log/supervisor/"$1'} ) | egrep -o 'Progress:.*[0-9]+\.[0-9]+.*' | egrep -o '[0-9]+\.[0-9]+' | tail -n1)
     date_timestamp=$(date '+%Y-%m-%d %H:%M:%S')
