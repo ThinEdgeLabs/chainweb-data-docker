@@ -30,6 +30,11 @@ ENV PG_VERSION=13 \
     NIX_SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt \
     PATH=/root/.nix-profile/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
+ENV CHAINWEB_NODE_HOST=172.15.0.1 \
+    CHAINWEB_NODE_SERVICE_PORT=31351 \
+    CHAINWEB_NODE_P2P_PORT=31350 \
+    NETWORK_ID=mainnet01
+
 RUN apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y acl sudo locales \
       postgresql-${PG_VERSION} postgresql-client-${PG_VERSION} postgresql-contrib-${PG_VERSION} \
